@@ -1,0 +1,13 @@
+langchain
+langchain-core
+langchain-community
+langchain-text-splitters
+sentence-transformers
+faiss-cpu
+pymupdf
+pypdf
+unstructured
+pillow
+pytesseract
+langchain-mistralai
+mistralai
