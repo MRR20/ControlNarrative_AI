@@ -14,7 +14,7 @@ st.set_page_config(
     layout="centered"
 )
 
-st.title("📘 Control Narrative → Pseudocode Generator")
+st.title("Control Narrative to Pseudocode Generator")
 
 st.write("Upload a document and generate structured system pseudocode.")
 
@@ -40,7 +40,7 @@ retriever_query = st.text_area(
     value=default_query
 )
 
-run_button = st.button("🚀 Run AI System")
+run_button = st.button("Retrieve Pseudocode")
 
 
 # ---------- PIPELINE ----------
@@ -55,24 +55,24 @@ if run_button:
                 temp_pdf_path = tmp.name
 
             try:
-                st.write("📥 Loading PDF...")
+                st.write("Loading PDF...")
                 docs = load_pdf(temp_pdf_path)
 
-                st.write("✂️ Splitting text...")
+                st.write("Splitting text...")
                 chunks = split_docs(docs)
 
-                st.write("🧠 Building vector store...")
+                st.write("Building vector store...")
                 retriever = build_vector_store(chunks)
 
-                st.write("🔍 Extracting logic (Stage 1)...")
+                st.write("Extracting logic (Stage 1)...")
                 coverage_logic = run_stage1(retriever, retriever_query)
 
-                st.write("🧾 Generating pseudocode (Stage 2)...")
+                st.write("Generating pseudocode (Stage 2)...")
                 pseudocode = run_stage2(coverage_logic, task_prompt)
 
                 st.success("Done!")
 
-                st.subheader("🧠 Final Pseudocode Output")
+                st.subheader("Final Pseudocode Output")
                 st.code(pseudocode, language="text")
 
             finally:
